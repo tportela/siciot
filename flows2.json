@@ -1,0 +1,111 @@
+[
+    {
+        "id": "6aa65bc8e4a9f3d3",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2d684074af3dff4b",
+        "type": "inject",
+        "z": "6aa65bc8e4a9f3d3",
+        "name": "Topic de ejemplo",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "76137027b5dd3281"
+            ]
+        ]
+    },
+    {
+        "id": "71a1e9a6e1ef5a2c",
+        "type": "debug",
+        "z": "6aa65bc8e4a9f3d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "76137027b5dd3281",
+        "type": "function",
+        "z": "6aa65bc8e4a9f3d3",
+        "name": "",
+        "func": "// Lo que está después de “//” son comentarios\n// Crea un objeto Date a partir del payload enviado por timestamp\nvar date = new Date(msg.payload);\n// Cambia el payload para que sea una fecha con formato\nmsg.payload = date.toString();\n// Regresa el mensaje para que se envíe al sigueinte nodo\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 160,
+        "wires": [
+            [
+                "71a1e9a6e1ef5a2c",
+                "3b6a2ae896d6fcb8"
+            ]
+        ]
+    },
+    {
+        "id": "3b6a2ae896d6fcb8",
+        "type": "ui_text",
+        "z": "6aa65bc8e4a9f3d3",
+        "group": "19b0c4078cd7dd0c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Fecha y hora:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 610,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "19b0c4078cd7dd0c",
+        "type": "ui_group",
+        "name": "Fecha",
+        "tab": "92601b301cf03f4d",
+        "order": 1,
+        "disp": true,
+        "width": "15",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "92601b301cf03f4d",
+        "type": "ui_tab",
+        "name": "Panel de Indicadores",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
