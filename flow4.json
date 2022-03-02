@@ -1,0 +1,303 @@
+[
+    {
+        "id": "bbc3a32b5f65f1f4",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "076092ef387952a8",
+        "type": "mqtt in",
+        "z": "bbc3a32b5f65f1f4",
+        "name": "",
+        "topic": "tadeoiot/grupo5/temp",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "7ae2366604fb6841",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "4de704dd419be4a5"
+            ]
+        ]
+    },
+    {
+        "id": "4de704dd419be4a5",
+        "type": "json",
+        "z": "bbc3a32b5f65f1f4",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 330,
+        "y": 200,
+        "wires": [
+            [
+                "7425c0697363176b",
+                "1a10240fb9998f15",
+                "cc07c958a25777ab"
+            ]
+        ]
+    },
+    {
+        "id": "7425c0697363176b",
+        "type": "function",
+        "z": "bbc3a32b5f65f1f4",
+        "name": "",
+        "func": "msg.payload = msg.payload.id;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 120,
+        "wires": [
+            [
+                "9732ac3b35cf799c"
+            ]
+        ]
+    },
+    {
+        "id": "1a10240fb9998f15",
+        "type": "function",
+        "z": "bbc3a32b5f65f1f4",
+        "name": "",
+        "func": "msg.payload = msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 260,
+        "wires": [
+            [
+                "7b42ecca6771330f"
+            ]
+        ]
+    },
+    {
+        "id": "9732ac3b35cf799c",
+        "type": "ui_text",
+        "z": "bbc3a32b5f65f1f4",
+        "group": "7c501f55d4133ec9",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Ultimo ID",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 680,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "7b42ecca6771330f",
+        "type": "ui_gauge",
+        "z": "bbc3a32b5f65f1f4",
+        "name": "",
+        "group": "7c501f55d4133ec9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Ultima Temperatura",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "-30",
+        "max": "+51",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 720,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "cc07c958a25777ab",
+        "type": "function",
+        "z": "bbc3a32b5f65f1f4",
+        "name": "",
+        "func": "msg.topic = msg.payload.id;\nmsg.payload = msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 380,
+        "wires": [
+            [
+                "a7f16ef6b1cadbb1"
+            ]
+        ]
+    },
+    {
+        "id": "a7f16ef6b1cadbb1",
+        "type": "ui_chart",
+        "z": "bbc3a32b5f65f1f4",
+        "name": "",
+        "group": "230423adfa46b4a9",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Historial",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Esperando datos",
+        "dot": false,
+        "ymin": "-30",
+        "ymax": "+51",
+        "removeOlder": "5",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 710,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "83b72d24773491cc",
+        "type": "ui_switch",
+        "z": "bbc3a32b5f65f1f4",
+        "name": "",
+        "label": "switch",
+        "tooltip": "",
+        "group": "7c501f55d4133ec9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 130,
+        "y": 400,
+        "wires": [
+            [
+                "dbefb25548bda4bb"
+            ]
+        ]
+    },
+    {
+        "id": "dbefb25548bda4bb",
+        "type": "mqtt out",
+        "z": "bbc3a32b5f65f1f4",
+        "name": "",
+        "topic": "tadeoiot/grupo5/tadeo",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7ae2366604fb6841",
+        "x": 370,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "7ae2366604fb6841",
+        "type": "mqtt-broker",
+        "name": "hivemq",
+        "broker": "35.156.220.109",
+        "port": "1883",
+        "clientid": "tadeosic-2022",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "7c501f55d4133ec9",
+        "type": "ui_group",
+        "name": "Ultimo dato",
+        "tab": "abcc7129bce88dde",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "230423adfa46b4a9",
+        "type": "ui_group",
+        "name": "Gráfica",
+        "tab": "abcc7129bce88dde",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "abcc7129bce88dde",
+        "type": "ui_tab",
+        "name": "Flow 4",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
